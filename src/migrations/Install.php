@@ -49,8 +49,12 @@ class Install extends Migration
       "visibility" => $this->integer(5),
       "wind_speed" => $this->decimal(4, 1),
       "wind_direction" => $this->integer(3),
-      "sunrise" => $this->timestamp()->notNull(),
-      "sunset" => $this->timestamp()->notNull(),
+      "sunrise" => $this->timestamp()->defaultValue(
+        new \yii\db\Expression("CURRENT_TIMESTAMP")
+      ),
+      "sunset" => $this->timestamp()->defaultValue(
+        new \yii\db\Expression("CURRENT_TIMESTAMP")
+      ),
       "dateCreated" => $this->dateTime(),
       "dateUpdated" => $this->dateTime(),
       "uid" => $this->uid(),
